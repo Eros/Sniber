@@ -20,5 +20,18 @@ void listAllDevices() {
     if(hDevInfo != INVALID_HANDLE_VALUE) {
         SetupDiEnumDeviceInterfaces(hDevInfo, NULL &GUID_DEVINTERFACE_USB_DEVICE, dwMemberId, &devIntfData);
 
+        while(GetLastError() != ERROR_NO_MORE_ITEMS) {
+            devData.cbSize = sizeof(devData);
+            SetupDiGetDeviceInterfaceDetail(hDevInfo, &devIntfData, NULL, 0, &dwSize, NULL);
+
+            //allocate the memory for the interface detail struct
+            devIntfDetailData = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, dwSize);
+            devIntfDetailData->cbSize = sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA);
+
+            //start checking if the device has been found by looking for the interface data in the datapath variable
+            if(SetupDiGetDeviceInterfaceDetail(hDevInfo, &devIntfData, devIntfDetailData, dwSize, &dwSize, &devData)) {
+
+            }
+        }
     }
 }
