@@ -32,6 +32,11 @@ void listAllDevices() {
             //start checking if the device has been found by looking for the interface data in the datapath variable
             if(SetupDiGetDeviceInterfaceDetail(hDevInfo, &devIntfData, devIntfDetailData, dwSize, &dwSize, &devData)) {
                 //check for the right VID/PID with the string handling routines
+
+                if(NULL != _tcsstr((TCHAR*)devIntfDetailData->DevicePath, _T("vid_10cf&pid_8090"))) {
+                    //find out of the serial of the port has K8090. Also need to check the registry also
+                    hKey = SetupDiOpenDevRegKey(hDevInfo, &devData, DICS_FLAG_GLOBAL, 0, DIREG_DEV, KEY_READ);
+                }
             }
         }
     }
