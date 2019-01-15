@@ -1,5 +1,8 @@
 #include <stdio.h>
-
-void hello(void) {
-
+#include "usb_list.h"
+#include "endpoint.cpp"
+int main() {
+    listAllDevices();
+    readFromBulkEndpoint();
+    return 0;
 }
