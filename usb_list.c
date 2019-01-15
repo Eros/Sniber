@@ -44,6 +44,12 @@ void listAllDevices() {
                     printf("Found device >> %d \n", lpData);
                 }
             }
+
+            //now free up the memory
+            HeapFree(GetProcessHeap(), 0, devIntfDetailData);
+            //continue the loop
+            SetupDiEnumDeviceInterfaces(hDevInfo, NULL, &GUID_DEVINTERFACE_USB_DEVICE, ++dwMemberId, &devIntfData);
         }
+        SetupDiDestroyDeviceInfoList(hDevInfo);
     }
 }
