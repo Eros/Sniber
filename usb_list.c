@@ -18,6 +18,7 @@ void listAllDevices() {
     hDevInfo = SetupDiGetClassDevs(&GUID_DEVINTERFACE_USB_DIVICE, NULL, 0, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT);
 
     if(hDevInfo != INVALID_HANDLE_VALUE) {
+        //prepare to iterate all device interfaces information until the function causes GetLastError()
         SetupDiEnumDeviceInterfaces(hDevInfo, NULL &GUID_DEVINTERFACE_USB_DEVICE, dwMemberId, &devIntfData);
 
         while(GetLastError() != ERROR_NO_MORE_ITEMS) {
@@ -30,7 +31,7 @@ void listAllDevices() {
 
             //start checking if the device has been found by looking for the interface data in the datapath variable
             if(SetupDiGetDeviceInterfaceDetail(hDevInfo, &devIntfData, devIntfDetailData, dwSize, &dwSize, &devData)) {
-
+                //check for the right VID/PID with the string handling routines
             }
         }
     }
