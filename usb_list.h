@@ -10,3 +10,5 @@
 #include <setupapi.h>
 #include <initguid.h>
 #include <stdio.h>
+
+void listAllDevices();
