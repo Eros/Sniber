@@ -36,6 +36,12 @@ void listAllDevices() {
                 if(NULL != _tcsstr((TCHAR*)devIntfDetailData->DevicePath, _T("vid_10cf&pid_8090"))) {
                     //find out of the serial of the port has K8090. Also need to check the registry also
                     hKey = SetupDiOpenDevRegKey(hDevInfo, &devData, DICS_FLAG_GLOBAL, 0, DIREG_DEV, KEY_READ);
+
+                    dwType = REG_SZ;
+                    dwSize = sizeof(lpData);
+                    RegQueryValueEx(hKey, _T("PortName"), NULL, &dwType, lpData, &dwSize);
+                    RegCloseKey(hKey);
+                    printf("Found device >> %d \n", lpData);
                 }
             }
         }
