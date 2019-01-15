@@ -9,6 +9,16 @@ Sniber is a small C library for reading, listing and at some point manipulating 
 
     This does not require the makelist to be ran
 
+## Required dependencies
+
+tchar > https://docs.microsoft.com/en-us/office/client-developer/outlook/mapi/tchar
+
+setupapi > https://docs.microsoft.com/en-us/windows-hardware/drivers/install/setupapi
+
+initguid > https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/including-guids-in-driver-code
+
+stdio > pre-installed into C library
+
 ## Usage example
 
 ```
